@@ -14,4 +14,16 @@ describe('Todo list item', () => {
       .first()
       .should('contain', '1. new TODO');
   });
+  it('deletes todo item', () => {
+    const todo = {
+      id: 1,
+      done: false,
+      desc: 'new TODO',
+    };
+    mount(<TodoListItem todo={todo} index={1} />);
+    cy.get('.list-group > .list-group-item:first > button')
+      .first()
+      .click()
+      .should('not.exist');
+  });
 });
